@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const cors = require('cors');
+require("dotenv").config();
 const express = require("express");
 const { Userprofile } = require("./models/user_profile");
 const { User } = require("./models/user");
@@ -14,7 +15,8 @@ app.use(express.json());
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });
-mongoose.connect("mongodb+srv://user_1:kmit1@cluster0.o7yf1ms.mongodb.net/?retryWrites=true&w=majority", {
+const uri = process.env.URI;
+mongoose.connect(uri, {
     useNewURLParser: true,
     useUnifiedTopology: true,
 })
